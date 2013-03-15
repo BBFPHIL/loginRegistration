@@ -7,12 +7,14 @@ $db = new Connection();
 
 // username and password grabbed
 
+
 if(isset($_POST['username']) && !empty($_POST['username']) &&
 isset($_POST['password']) && !empty($_POST['password'])){
 
+
+	
 	$username=$_POST['username'];
 	$password=$_POST['password'];
-	
 	//$table = 'membership';
 	
 	//prepare for query
@@ -33,7 +35,7 @@ isset($_POST['password']) && !empty($_POST['password'])){
 		$_SESSION['username'] = $result['username'];
 		//redirect("login_success.php");
 		//header("Location:login_success.php");
-		
+		echo "Successfully logged in";
 		
 	}else {
 		
