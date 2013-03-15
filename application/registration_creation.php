@@ -14,7 +14,9 @@ if(isset($_POST['username']) && !empty($_POST['password']) &&
 isset($_POST['password']) && !empty($_POST['password']) && 
 isset($_POST['email_address']) && !empty($_POST['email_address']) &&
 isset($_POST['first_name']) && !empty($_POST['first_name']) &&
-isset($_POST['last_name']) && !empty($_POST['last_name'])){
+isset($_POST['last_name']) && !empty($_POST['last_name']) &&
+filter_var($_POST['email_address'], FILTER_VALIDATE_EMAIL)){
+
 
 	$username=$_POST['username'];
 	$password=$_POST['password'];	
@@ -24,10 +26,8 @@ isset($_POST['last_name']) && !empty($_POST['last_name'])){
 	
 	//check if email exists
 	
-	$stmt = $db->conn->prepare("SELECT * FROM membership WHERE
-	username=:username and email_address=:email_address");
+	$stmt = $db->conn->prepare("SELECT * FROM membership WHERE email_address=:email_address");
 	
-	$stmt->bindParam(":username", $username , PDO::PARAM_STR);
 	$stmt->bindParam(":email_address", $email_address , PDO::PARAM_STR);
 	
 	$stmt->execute();
